@@ -166,6 +166,16 @@
       <form id="order-form" class="order-form">
         <h3 class="order-form__title">بيانات الطلب</h3>
         <div class="form-field">
+          <label for="customer-country">الدولة</label>
+          <select id="customer-country" name="customer-country" required autocomplete="country">
+            <option value="EG" selected>🇪🇬 مصر</option>
+            <option value="SA">🇸🇦 السعودية</option>
+            <option value="AE">🇦🇪 الإمارات</option>
+            <option value="KW">🇰🇼 الكويت</option>
+            <option value="QA">🇶🇦 قطر</option>
+          </select>
+        </div>
+        <div class="form-field">
           <label for="customer-name">الاسم</label>
           <input type="text" id="customer-name" name="customer-name" required autocomplete="name" dir="auto">
         </div>

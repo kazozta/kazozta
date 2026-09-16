@@ -4,15 +4,26 @@
 
 import { WHATSAPP_NUMBER } from "./config.js";
 
+// Checkout country options, keyed by the <select> value. The flag+name
+// string is what actually appears in the WhatsApp message.
+export const COUNTRIES = {
+  EG: "🇪🇬 مصر",
+  SA: "🇸🇦 السعودية",
+  AE: "🇦🇪 الإمارات",
+  KW: "🇰🇼 الكويت",
+  QA: "🇶🇦 قطر",
+};
+
 export function buildOrderMessage(customer, cartItems, products) {
   const lines = [];
-  lines.push("New Order - KAZOZTA");
+  lines.push("طلب جديد - كازوزتا");
   lines.push("");
-  lines.push(`Name: ${customer.name}`);
-  lines.push(`Phone: ${customer.phone}`);
-  lines.push(`Address: ${customer.address}`);
+  lines.push(`الدولة: ${COUNTRIES[customer.country] || customer.country}`);
+  lines.push(`الاسم: ${customer.name}`);
+  lines.push(`الهاتف: ${customer.phone}`);
+  lines.push(`العنوان: ${customer.address}`);
   lines.push("");
-  lines.push("Products:");
+  lines.push("المنتجات:");
 
   let total = 0;
   let currency = products[0] ? products[0].currency : "EGP";
@@ -27,7 +38,7 @@ export function buildOrderMessage(customer, cartItems, products) {
   });
 
   lines.push("");
-  lines.push(`Total: ${total} ${currency}`);
+  lines.push(`الإجمالي: ${total} ${currency}`);
 
   return lines.join("\n");
 }
