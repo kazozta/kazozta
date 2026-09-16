@@ -55,11 +55,6 @@ function renderProducts() {
     title.dir = "auto";
     title.textContent = product.name;
 
-    const description = document.createElement("p");
-    description.className = "product-card__description";
-    description.dir = "auto";
-    description.textContent = product.description || "";
-
     const price = document.createElement("p");
     price.className = "product-card__price";
     price.dir = "ltr";
@@ -68,19 +63,30 @@ function renderProducts() {
     const addButton = document.createElement("button");
     addButton.type = "button";
     addButton.className = "product-card__add";
-    addButton.textContent = "أضف إلى السلة";
+    addButton.textContent = product.available ? "أضف إلى السلة" : "غير متوفر حاليًا";
     addButton.disabled = !product.available;
     addButton.addEventListener("click", () => {
       cart.addItem(product.id, 1);
       renderCart();
     });
 
-    card.append(media, title, description, price, addButton);
+    card.append(media, title);
+
+    if (product.description) {
+      const description = document.createElement("p");
+      description.className = "product-card__description";
+      description.dir = "auto";
+      description.textContent = product.description;
+      card.appendChild(description);
+    }
+
+    card.append(price, addButton);
     container.appendChild(card);
   });
 }
 
 function renderCart() {
+  const cartInner = document.querySelector(".cart-inner");
   const list = document.getElementById("cart-items");
   const totalEl = document.getElementById("cart-total");
   const countEl = document.getElementById("cart-count");
@@ -88,6 +94,8 @@ function renderCart() {
   if (!list || !totalEl || !countEl) return;
 
   const currentCart = cart.getCart();
+  const isEmpty = Object.keys(currentCart).length === 0;
+  if (cartInner) cartInner.classList.toggle("is-empty", isEmpty);
   list.innerHTML = "";
 
   Object.entries(currentCart).forEach(([productId, qty]) => {

@@ -52,13 +52,20 @@
       <svg viewBox="0 0 200 200" class="hero__leaf hero__leaf--one"><path d="M170 20c-70 0-120 45-120 115 0 9 8 17 17 17 68 0 111-50 111-121 0-4 0-8-8-11z" fill="currentColor"/></svg>
       <svg viewBox="0 0 200 200" class="hero__leaf hero__leaf--two"><path d="M170 20c-70 0-120 45-120 115 0 9 8 17 17 17 68 0 111-50 111-121 0-4 0-8-8-11z" fill="currentColor"/></svg>
     </div>
-    <div class="hero__content reveal">
-      <p class="hero__tagline-en" dir="ltr">Nature on your table</p>
-      <h1 class="hero__title">الطبيعة على مائدتك</h1>
-      <p class="hero__subtitle">منتجات غذائية مختارة بعناية، بجودة نثق بها.</p>
-      <div class="hero__ctas">
-        <a href="#products" class="btn btn--primary">اكتشف منتجاتنا</a>
-        <a href="https://wa.me/201501546667" target="_blank" rel="noopener" class="btn btn--secondary">تواصل معنا عبر واتساب</a>
+    <div class="hero__inner">
+      <div class="hero__content reveal">
+        <p class="hero__tagline-en" dir="ltr">Nature on your table</p>
+        <h1 class="hero__title">الطبيعة على مائدتك</h1>
+        <p class="hero__subtitle">منتجات غذائية مختارة بعناية، بجودة نثق بها.</p>
+        <div class="hero__ctas">
+          <a href="#products" class="btn btn--primary">اكتشف منتجاتنا</a>
+          <a href="https://wa.me/201501546667" target="_blank" rel="noopener" class="btn btn--secondary">تواصل معنا عبر واتساب</a>
+        </div>
+      </div>
+      <div class="hero__visual reveal" aria-hidden="true">
+        <div class="hero__visual-frame">
+          <img src="assets/coming-soon.png" alt="" class="hero__visual-img">
+        </div>
       </div>
     </div>
   </section>
@@ -108,6 +115,10 @@
 
   <section id="about" class="section" aria-labelledby="about-heading">
     <div class="about reveal">
+      <svg class="about__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+        <path d="M32 6c-15 0-24 10-24 24 0 3 2 5 5 5 15 0 24-10 24-25 0-1 0-2-1-3-1-1-2-1-4-1z" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M14 46c4-8 12-16 24-22" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
       <h2 id="about-heading">حكاية كازوزتا</h2>
       <p class="about__text">
         كازوزتا علامة تجارية تؤمن بأن أفضل ما تقدمه الطبيعة يستحق أن يصل إلى مائدتك في أبسط صوره وأكثرها نقاءً.
@@ -143,6 +154,12 @@
   <section id="cart" class="section" aria-labelledby="cart-heading">
     <div class="cart-inner">
       <h2 id="cart-heading">السلة (<span id="cart-count" dir="ltr">0</span>)</h2>
+
+      <div id="cart-empty-state" class="cart-empty">
+        <p class="cart-empty__title">السلة فارغة</p>
+        <p class="cart-empty__hint">أضف منتجًا من قائمة المنتجات لإتمام طلبك.</p>
+      </div>
+
       <ul id="cart-items" class="cart-items" aria-live="polite"></ul>
       <p class="cart-total">الإجمالي: <span id="cart-total" dir="ltr">0</span></p>
 
