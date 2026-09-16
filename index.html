@@ -3,54 +3,184 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KAZOZTA</title>
-<meta name="description" content="KAZOZTA — premium natural food products.">
+<title>KAZOZTA | Nature on your table</title>
+<meta name="description" content="KAZOZTA — premium natural food products. Nature on your table.">
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <header class="site-header">
-  <img src="assets/logo.png" alt="KAZOZTA logo" class="site-header__logo">
-  <h1 class="site-header__title">KAZOZTA</h1>
+  <div class="site-header__inner">
+    <a href="#hero" class="brand">
+      <img src="assets/logo.png" alt="KAZOZTA" class="brand__logo">
+    </a>
+
+    <nav id="primary-nav" class="nav" aria-label="Primary">
+      <a href="#hero">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#cart" class="cart-link" aria-label="View cart">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M3 6h2l2.4 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6.2"/>
+          <circle cx="10" cy="21" r="1.4"/>
+          <circle cx="17" cy="21" r="1.4"/>
+        </svg>
+        <span id="header-cart-count" class="cart-badge">0</span>
+      </a>
+
+      <button type="button" id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <line x1="4" y1="7" x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
+    </div>
+  </div>
 </header>
 
-<main>
-  <section id="products" aria-labelledby="products-heading">
-    <h2 id="products-heading">Products</h2>
+<main id="main">
+
+  <section id="hero" class="hero">
+    <div class="hero__decor" aria-hidden="true">
+      <svg viewBox="0 0 200 200" class="hero__leaf hero__leaf--one"><path d="M170 20c-70 0-120 45-120 115 0 9 8 17 17 17 68 0 111-50 111-121 0-4 0-8-8-11z" fill="currentColor"/></svg>
+      <svg viewBox="0 0 200 200" class="hero__leaf hero__leaf--two"><path d="M170 20c-70 0-120 45-120 115 0 9 8 17 17 17 68 0 111-50 111-121 0-4 0-8-8-11z" fill="currentColor"/></svg>
+    </div>
+    <div class="hero__content reveal">
+      <p class="hero__eyebrow">KAZOZTA · Premium Quality</p>
+      <h1 class="hero__title">Nature on your table</h1>
+      <p class="hero__subtitle" dir="rtl" lang="ar">منتجات طبيعية مختارة بعناية</p>
+      <p class="hero__announce" dir="rtl" lang="ar">قريبًا بين أيديكم</p>
+      <a href="#products" class="btn btn--primary hero__cta" dir="rtl" lang="ar">اكتشف منتجاتنا</a>
+    </div>
+  </section>
+
+  <section id="products" class="section" aria-labelledby="products-heading">
+    <div class="section__header reveal">
+      <h2 id="products-heading" dir="rtl" lang="ar">منتجات كازوزتا</h2>
+      <p class="section__subtitle" dir="rtl" lang="ar">منتجاتنا المختارة بعناية ستصل إليكم قريبًا.</p>
+    </div>
     <div id="product-list" class="product-list"></div>
   </section>
 
-  <section id="cart" aria-labelledby="cart-heading">
-    <h2 id="cart-heading">Cart (<span id="cart-count">0</span>)</h2>
-    <ul id="cart-items" class="cart-items" aria-live="polite"></ul>
-    <p class="cart-total">Total: <span id="cart-total">0</span></p>
+  <section id="why" class="section section--muted" aria-labelledby="why-heading">
+    <h2 id="why-heading" class="visually-hidden">Why KAZOZTA</h2>
+    <div class="features">
+      <div class="feature reveal">
+        <span class="feature__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <path d="M20 4c-8 0-14 5-14 13 0 1.1.9 2 2 2 8 0 13-6 13-14 0-.4 0-.7-1-1z"/>
+            <path d="M6 19c2-4 6-8 12-11"/>
+          </svg>
+        </span>
+        <h3 dir="rtl" lang="ar">طبيعي</h3>
+        <p dir="rtl" lang="ar">منتجات نختارها بعناية</p>
+      </div>
+      <div class="feature reveal">
+        <span class="feature__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <circle cx="12" cy="9" r="6"/>
+            <path d="M9 9l2 2 4-4"/>
+            <path d="M8.5 14.5L7 21l5-3 5 3-1.5-6.5"/>
+          </svg>
+        </span>
+        <h3 dir="rtl" lang="ar">جودة</h3>
+        <p dir="rtl" lang="ar">نهتم بالتفاصيل من المصدر إلى مائدتك</p>
+      </div>
+      <div class="feature reveal">
+        <span class="feature__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+            <path d="M12 3l4 6H8l4-6z"/>
+            <path d="M12 9l5 7H7l5-7z"/>
+            <line x1="12" y1="16" x2="12" y2="21"/>
+          </svg>
+        </span>
+        <h3 dir="rtl" lang="ar">طبيعة</h3>
+        <p dir="rtl" lang="ar">من الطبيعة إلى مائدتك</p>
+      </div>
+    </div>
   </section>
 
-  <section id="order" aria-labelledby="order-heading">
-    <h2 id="order-heading">Checkout</h2>
-    <form id="order-form" novalidate>
-      <div class="form-field">
-        <label for="customer-name">Full name</label>
-        <input type="text" id="customer-name" name="customer-name" required autocomplete="name">
-      </div>
-      <div class="form-field">
-        <label for="customer-phone">Phone number</label>
-        <input type="tel" id="customer-phone" name="customer-phone" required autocomplete="tel">
-      </div>
-      <div class="form-field">
-        <label for="customer-address">Address</label>
-        <textarea id="customer-address" name="customer-address" required autocomplete="street-address"></textarea>
-      </div>
-      <button type="submit" class="order-form__submit">Send Order via WhatsApp</button>
-    </form>
+  <section id="about" class="section" aria-labelledby="about-heading">
+    <div class="about reveal">
+      <h2 id="about-heading" dir="rtl" lang="ar">عن كازوزتا</h2>
+      <p class="about__placeholder-tag">Temporary content — سيتم استبداله لاحقًا</p>
+      <p class="about__text" dir="rtl" lang="ar">
+        سيتم إضافة نبذة كاملة عن كازوزتا هنا قريبًا. تلتزم كازوزتا بتقديم منتجات طبيعية مختارة بعناية لعملائها.
+      </p>
+    </div>
   </section>
+
+  <section id="contact" class="section section--muted" aria-labelledby="contact-heading">
+    <h2 id="contact-heading" class="visually-hidden">Contact</h2>
+    <div class="social reveal">
+      <a class="social__link" href="https://www.facebook.com/share/1LovqNEZ1m/" target="_blank" rel="noopener" aria-label="KAZOZTA on Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="currentColor" opacity="0.08"/><path d="M13.5 21v-7.2h2.4l.36-2.8h-2.76V9.1c0-.8.22-1.35 1.37-1.35H16.3V5.2C16 5.16 15.1 5.08 14.06 5.08c-2.16 0-3.64 1.32-3.64 3.74v2.2H8v2.8h2.42V21h3.08z" fill="currentColor"/></svg>
+      </a>
+      <a class="social__link" href="https://www.instagram.com/kazozta?stkn=Yng0cHE3aGF1dTE4" target="_blank" rel="noopener" aria-label="KAZOZTA on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="social__link" href="https://www.tiktok.com/@kazozta?_r=1&_t=ZS-99jTFdvU14K" target="_blank" rel="noopener" aria-label="KAZOZTA on TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14.5 3h2.2c.2 1.7 1.4 3.1 3.3 3.4v2.3c-1.2 0-2.3-.35-3.3-.95v6.7c0 3-2.4 5.4-5.4 5.4S5.9 17.45 5.9 14.45c0-2.9 2.25-5.25 5.1-5.4v2.35c-1.5.15-2.7 1.4-2.7 2.95 0 1.65 1.35 3 3.05 3s3.05-1.35 3.05-3V3z"/></svg>
+      </a>
+      <a class="social__link" href="https://wa.me/message/ITOAAX2ZC6T5L1" target="_blank" rel="noopener" aria-label="KAZOZTA on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3.5A8.5 8.5 0 0 0 4.3 15.9L3 21l5.25-1.28A8.5 8.5 0 1 0 12 3.5zm0 15.4a6.86 6.86 0 0 1-3.5-.96l-.25-.15-2.6.64.65-2.55-.16-.26A6.9 6.9 0 1 1 12 18.9zm3.75-5.15c-.2-.1-1.2-.6-1.38-.66-.18-.07-.32-.1-.45.1-.13.2-.5.66-.62.8-.11.13-.23.15-.43.05-.2-.1-.86-.32-1.63-1.02-.6-.54-1-1.2-1.13-1.4-.12-.2-.01-.31.09-.4.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.07-.14.03-.26-.02-.36-.05-.1-.45-1.1-.62-1.5-.16-.4-.33-.34-.45-.35h-.38c-.13 0-.34.05-.52.25-.18.2-.68.66-.68 1.6s.7 1.86.8 2c.1.13 1.37 2.1 3.33 2.94.46.2.83.32 1.11.4.47.15.9.13 1.24.08.38-.06 1.2-.49 1.37-.96.17-.47.17-.87.12-.96-.05-.09-.18-.14-.38-.24z"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <section id="cart" class="section" aria-labelledby="cart-heading">
+    <div class="cart-inner">
+      <h2 id="cart-heading">Cart (<span id="cart-count">0</span>)</h2>
+      <ul id="cart-items" class="cart-items" aria-live="polite"></ul>
+      <p class="cart-total">Total: <span id="cart-total">0</span></p>
+
+      <form id="order-form" class="order-form">
+        <h3 class="order-form__title">Checkout</h3>
+        <div class="form-field">
+          <label for="customer-name">Full name</label>
+          <input type="text" id="customer-name" name="customer-name" required autocomplete="name">
+        </div>
+        <div class="form-field">
+          <label for="customer-phone">Phone number</label>
+          <input type="tel" id="customer-phone" name="customer-phone" required autocomplete="tel" inputmode="tel">
+        </div>
+        <div class="form-field">
+          <label for="customer-address">Address</label>
+          <textarea id="customer-address" name="customer-address" required autocomplete="street-address"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary order-form__submit">Send Order via WhatsApp</button>
+        <p id="order-status" class="order-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
-  <a href="https://www.facebook.com/share/1LovqNEZ1m/" target="_blank" rel="noopener">Facebook</a>
-  <a href="https://www.instagram.com/kazozta?stkn=Yng0cHE3aGF1dTE4" target="_blank" rel="noopener">Instagram</a>
-  <a href="https://www.tiktok.com/@kazozta?_r=1&_t=ZS-99jTFdvU14K" target="_blank" rel="noopener">TikTok</a>
-  <a href="https://wa.me/message/ITOAAX2ZC6T5L1" target="_blank" rel="noopener">WhatsApp</a>
+  <img src="assets/logo.png" alt="KAZOZTA" class="site-footer__logo">
+  <p class="site-footer__tagline">Nature on your table</p>
+  <div class="social social--footer">
+    <a class="social__link" href="https://www.facebook.com/share/1LovqNEZ1m/" target="_blank" rel="noopener" aria-label="KAZOZTA on Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.5 21v-7.2h2.4l.36-2.8h-2.76V9.1c0-.8.22-1.35 1.37-1.35H16.3V5.2C16 5.16 15.1 5.08 14.06 5.08c-2.16 0-3.64 1.32-3.64 3.74v2.2H8v2.8h2.42V21h3.08z" fill="currentColor"/></svg>
+    </a>
+    <a class="social__link" href="https://www.instagram.com/kazozta?stkn=Yng0cHE3aGF1dTE4" target="_blank" rel="noopener" aria-label="KAZOZTA on Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a class="social__link" href="https://www.tiktok.com/@kazozta?_r=1&_t=ZS-99jTFdvU14K" target="_blank" rel="noopener" aria-label="KAZOZTA on TikTok">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14.5 3h2.2c.2 1.7 1.4 3.1 3.3 3.4v2.3c-1.2 0-2.3-.35-3.3-.95v6.7c0 3-2.4 5.4-5.4 5.4S5.9 17.45 5.9 14.45c0-2.9 2.25-5.25 5.1-5.4v2.35c-1.5.15-2.7 1.4-2.7 2.95 0 1.65 1.35 3 3.05 3s3.05-1.35 3.05-3V3z"/></svg>
+    </a>
+    <a class="social__link" href="https://wa.me/message/ITOAAX2ZC6T5L1" target="_blank" rel="noopener" aria-label="KAZOZTA on WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 3.5A8.5 8.5 0 0 0 4.3 15.9L3 21l5.25-1.28A8.5 8.5 0 1 0 12 3.5zm0 15.4a6.86 6.86 0 0 1-3.5-.96l-.25-.15-2.6.64.65-2.55-.16-.26A6.9 6.9 0 1 1 12 18.9zm3.75-5.15c-.2-.1-1.2-.6-1.38-.66-.18-.07-.32-.1-.45.1-.13.2-.5.66-.62.8-.11.13-.23.15-.43.05-.2-.1-.86-.32-1.63-1.02-.6-.54-1-1.2-1.13-1.4-.12-.2-.01-.31.09-.4.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.07-.14.03-.26-.02-.36-.05-.1-.45-1.1-.62-1.5-.16-.4-.33-.34-.45-.35h-.38c-.13 0-.34.05-.52.25-.18.2-.68.66-.68 1.6s.7 1.86.8 2c.1.13 1.37 2.1 3.33 2.94.46.2.83.32 1.11.4.47.15.9.13 1.24.08.38-.06 1.2-.49 1.37-.96.17-.47.17-.87.12-.96-.05-.09-.18-.14-.38-.24z"/></svg>
+    </a>
+  </div>
+  <p class="site-footer__copyright">&copy; <span id="footer-year"></span> KAZOZTA. All rights reserved.</p>
 </footer>
 
 <script type="module" src="js/app.js"></script>
