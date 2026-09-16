@@ -1,0 +1,12 @@
+[
+  {
+    "id": "coming-soon",
+    "name": "قريبًا",
+    "price": 0,
+    "currency": "EGP",
+    "image": "assets/coming-soon.png",
+    "description": "",
+    "category": "coming-soon",
+    "available": true
+  }
+]

@@ -1,0 +1,257 @@
+/* KAZOZTA — foundation stylesheet.
+   Mobile-first, functional layout only. Final visual design comes later. */
+
+:root {
+  --green: #193b27;
+  --gold: #b88a32;
+  --cream: #f7f2e7;
+  --ink: #17301f;
+  --white: #ffffff;
+  --muted: #6f756d;
+  --line: #ded6c5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--green);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.site-header__title {
+  font-size: 20px;
+  margin: 0;
+  color: var(--green);
+}
+
+main {
+  display: block;
+  padding: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+main > section {
+  margin-bottom: 28px;
+}
+
+main h2 {
+  font-size: 18px;
+  color: var(--green);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 6px;
+  margin-bottom: 14px;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 480px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.product-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-card__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--cream);
+}
+
+.product-card__image--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 8px;
+}
+
+.product-card__title {
+  font-size: 16px;
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+.product-card__description {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+  min-height: 1em;
+}
+
+.product-card__price {
+  font-weight: bold;
+  color: var(--gold);
+  margin: 4px 0;
+}
+
+.product-card__add,
+.order-form__submit {
+  background: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.product-card__add:disabled {
+  background: var(--muted);
+  cursor: not-allowed;
+}
+
+.cart-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.cart-item__name {
+  flex: 1 1 100%;
+  font-size: 14px;
+}
+
+.cart-item__step {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cart-item__qty {
+  min-width: 20px;
+  text-align: center;
+}
+
+.cart-item__line-total {
+  margin-left: auto;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+.cart-item__remove {
+  background: none;
+  border: none;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.cart-total {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.form-field {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field label {
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.form-field input,
+.form-field textarea {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-field textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.order-form__submit {
+  width: 100%;
+  font-size: 15px;
+  padding: 12px;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 16px 32px;
+  flex-wrap: wrap;
+}
+
+.site-footer a {
+  font-size: 13px;
+  text-decoration: none;
+}
