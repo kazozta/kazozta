@@ -173,6 +173,7 @@ function handleOrderSubmit(event) {
 
   const form = event.target;
   const customer = {
+    country: form.elements["customer-country"].value,
     name: form.elements["customer-name"].value.trim(),
     phone: form.elements["customer-phone"].value.trim(),
     address: form.elements["customer-address"].value.trim(),

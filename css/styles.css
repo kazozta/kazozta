@@ -1001,6 +1001,7 @@ a {
 }
 
 .form-field input,
+.form-field select,
 .form-field textarea {
   padding: 12px;
   min-height: 44px;
@@ -1009,9 +1010,15 @@ a {
   font-size: 15px;
   font-family: inherit;
   background: var(--white);
+  color: var(--ink);
+}
+
+.form-field select {
+  appearance: auto;
 }
 
 .form-field input:focus-visible,
+.form-field select:focus-visible,
 .form-field textarea:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 1px;
