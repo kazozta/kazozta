@@ -45,6 +45,7 @@ function renderProducts() {
     if (product.category === "coming-soon") {
       const badge = document.createElement("span");
       badge.className = "product-card__badge";
+      badge.dir = "ltr";
       badge.textContent = "Coming Soon";
       media.appendChild(badge);
     }
@@ -61,12 +62,13 @@ function renderProducts() {
 
     const price = document.createElement("p");
     price.className = "product-card__price";
+    price.dir = "ltr";
     price.textContent = formatPrice(product);
 
     const addButton = document.createElement("button");
     addButton.type = "button";
     addButton.className = "product-card__add";
-    addButton.textContent = "Add to Cart";
+    addButton.textContent = "أضف إلى السلة";
     addButton.disabled = !product.available;
     addButton.addEventListener("click", () => {
       cart.addItem(product.id, 1);
@@ -104,7 +106,7 @@ function renderCart() {
     decreaseBtn.type = "button";
     decreaseBtn.className = "cart-item__step";
     decreaseBtn.textContent = "-";
-    decreaseBtn.setAttribute("aria-label", `Decrease quantity of ${product.name}`);
+    decreaseBtn.setAttribute("aria-label", `تقليل كمية ${product.name}`);
     decreaseBtn.addEventListener("click", () => {
       cart.decrement(productId);
       renderCart();
@@ -112,13 +114,14 @@ function renderCart() {
 
     const qtyEl = document.createElement("span");
     qtyEl.className = "cart-item__qty";
+    qtyEl.dir = "ltr";
     qtyEl.textContent = String(qty);
 
     const increaseBtn = document.createElement("button");
     increaseBtn.type = "button";
     increaseBtn.className = "cart-item__step";
     increaseBtn.textContent = "+";
-    increaseBtn.setAttribute("aria-label", `Increase quantity of ${product.name}`);
+    increaseBtn.setAttribute("aria-label", `زيادة كمية ${product.name}`);
     increaseBtn.addEventListener("click", () => {
       cart.increment(productId);
       renderCart();
@@ -126,13 +129,14 @@ function renderCart() {
 
     const lineTotal = document.createElement("span");
     lineTotal.className = "cart-item__line-total";
+    lineTotal.dir = "ltr";
     lineTotal.textContent = `${product.price * qty} ${product.currency}`;
 
     const removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.className = "cart-item__remove";
-    removeBtn.textContent = "Remove";
-    removeBtn.setAttribute("aria-label", `Remove ${product.name} from cart`);
+    removeBtn.textContent = "إزالة";
+    removeBtn.setAttribute("aria-label", `إزالة ${product.name} من السلة`);
     removeBtn.addEventListener("click", () => {
       cart.removeItem(productId);
       renderCart();
@@ -168,7 +172,7 @@ function handleOrderSubmit(event) {
 
   const currentCart = cart.getCart();
   if (Object.keys(currentCart).length === 0) {
-    setOrderStatus("Your cart is empty. Please add at least one product before checking out.", true);
+    setOrderStatus("السلة فارغة. الرجاء إضافة منتج واحد على الأقل قبل إتمام الطلب.", true);
     return;
   }
 
@@ -177,9 +181,9 @@ function handleOrderSubmit(event) {
   try {
     const url = buildWhatsAppUrl(message);
     window.open(url, "_blank", "noopener");
-    setOrderStatus("WhatsApp is opening with your order details ready to send.", false);
+    setOrderStatus("يتم الآن فتح واتساب لإرسال تفاصيل طلبك.", false);
   } catch (err) {
-    setOrderStatus("Ordering isn't available yet — the company WhatsApp number hasn't been configured.", true);
+    setOrderStatus("تعذر إتمام الطلب حاليًا. لم يتم إعداد رقم واتساب الخاص بالشركة بعد.", true);
     console.error(err);
   }
 }

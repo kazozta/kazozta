@@ -59,7 +59,7 @@ a {
 
 .skip-link {
   position: absolute;
-  left: 8px;
+  inset-inline-start: 8px;
   top: -48px;
   background: var(--green);
   color: var(--white);
@@ -100,6 +100,18 @@ a {
 .btn--primary:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(25, 59, 39, 0.28);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--green);
+  border: 1.5px solid var(--green);
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus-visible {
+  background: rgba(25, 59, 39, 0.06);
+  transform: translateY(-2px);
 }
 
 /* Header */
@@ -145,11 +157,10 @@ a {
 .nav a {
   text-decoration: none;
   color: var(--ink);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.02em;
   position: relative;
-  padding: 6px 0;
+  padding: 10px 0;
 }
 
 .nav a::after {
@@ -180,8 +191,8 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   color: var(--green);
   text-decoration: none;
@@ -200,7 +211,7 @@ a {
 .cart-badge {
   position: absolute;
   top: -2px;
-  right: -2px;
+  inset-inline-end: -2px;
   min-width: 18px;
   height: 18px;
   padding: 0 4px;
@@ -219,8 +230,8 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border: none;
   background: none;
   color: var(--green);
@@ -361,13 +372,13 @@ a {
 
 .hero__leaf--one {
   top: -40px;
-  left: -50px;
+  inset-inline-start: -50px;
   transform: rotate(20deg);
 }
 
 .hero__leaf--two {
   bottom: -60px;
-  right: -60px;
+  inset-inline-end: -60px;
   transform: rotate(200deg);
 }
 
@@ -377,9 +388,9 @@ a {
   margin: 0 auto;
 }
 
-.hero__eyebrow {
+.hero__tagline-en {
   text-transform: uppercase;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   font-size: 12px;
   color: var(--gold);
   margin: 0 0 18px;
@@ -387,23 +398,24 @@ a {
 }
 
 .hero__title {
-  font-size: clamp(34px, 6vw, 56px);
+  font-size: clamp(32px, 6vw, 52px);
   color: var(--green);
   margin: 0 0 18px;
   font-weight: 700;
-  letter-spacing: -0.01em;
 }
 
 .hero__subtitle {
-  font-size: 19px;
+  font-size: 18px;
   color: var(--ink);
-  margin: 0 0 8px;
+  margin: 0 0 32px;
 }
 
-.hero__announce {
-  font-size: 15px;
-  color: var(--muted);
-  margin: 0 0 32px;
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
 }
 
 /* Products */
@@ -566,12 +578,6 @@ a {
 .feature h3 {
   font-size: 19px;
   color: var(--green);
-  margin: 0 0 8px;
-}
-
-.feature p {
-  color: var(--muted);
-  font-size: 14px;
   margin: 0;
 }
 
@@ -589,17 +595,6 @@ a {
   margin: 0 0 10px;
 }
 
-.about__placeholder-tag {
-  display: inline-block;
-  font-size: 12px;
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  border-radius: 999px;
-  padding: 3px 12px;
-  margin-bottom: 18px;
-  letter-spacing: 0.02em;
-}
-
 .about__text {
   color: var(--ink);
   font-size: 16px;
@@ -608,11 +603,29 @@ a {
 
 /* Social / contact */
 
+.contact {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 26px;
+  color: var(--green);
+  margin: 0 0 10px;
+}
+
+.contact__text {
+  color: var(--muted);
+  font-size: 16px;
+  margin: 0 0 24px;
+}
+
 .social {
   display: flex;
   justify-content: center;
   gap: 16px;
-  padding: 40px 16px;
+  padding: 40px 16px 0;
 }
 
 .social__link {
@@ -686,13 +699,13 @@ a {
 }
 
 .cart-item__step {
-  width: 30px;
-  height: 30px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--line);
   background: var(--white);
   border-radius: 8px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .cart-item__step:hover {
@@ -716,7 +729,9 @@ a {
   color: var(--muted);
   text-decoration: underline;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
+  padding: 12px 4px;
+  min-height: 44px;
 }
 
 .cart-total {
@@ -753,9 +768,10 @@ a {
 .form-field input,
 .form-field textarea {
   padding: 12px;
+  min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   font-family: inherit;
   background: var(--white);
 }
