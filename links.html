@@ -26,7 +26,7 @@
       color: #173d2a;
       display: flex;
       justify-content: center;
-      padding: 28px 18px 35px;
+      padding: 34px 18px 36px;
     }
 
     .page {
@@ -35,76 +35,358 @@
       text-align: center;
     }
 
+    /* =========================
+       BRAND
+    ========================== */
+
     .brand {
-      margin-bottom: 24px;
+      margin-bottom: 30px;
     }
 
     .logo {
       display: block;
-      width: 185px;
-      max-width: 65%;
+      width: 235px;
+      max-width: 78%;
       height: auto;
-      margin: 0 auto 12px;
+      margin: 0 auto 14px;
+
+      /*
+        دمج الخلفية البيضاء الموجودة في ملف اللوجو
+        مع خلفية الصفحة بدون تغيير اللوجو نفسه.
+      */
+      mix-blend-mode: multiply;
     }
 
     .tagline {
-      color: #66715f;
-      font-size: 14px;
-      font-weight: 600;
       margin: 0;
+      color: #687261;
+      font-size: 15px;
+      font-weight: 600;
     }
+
+    /* =========================
+       LINKS
+    ========================== */
 
     .links {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 26px;
+      gap: 13px;
     }
 
     .link {
-      min-height: 58px;
+      position: relative;
+
+      width: 100%;
+      min-height: 62px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 13px;
 
-      padding: 13px 20px;
-      border-radius: 15px;
+      padding: 14px 22px;
+
+      border-radius: 17px;
 
       background: #fffdf8;
       color: #173d2a;
+
       text-decoration: none;
 
       font-size: 16px;
       font-weight: 700;
 
-      border: 1px solid rgba(23, 61, 42, 0.08);
-      box-shadow: 0 5px 18px rgba(23, 61, 42, 0.07);
+      border: 1px solid rgba(23, 61, 42, 0.07);
+
+      box-shadow:
+        0 5px 18px rgba(23, 61, 42, 0.07);
 
       transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        background 0.2s ease;
     }
 
     .link:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(23, 61, 42, 0.12);
+
+      box-shadow:
+        0 9px 24px rgba(23, 61, 42, 0.12);
     }
 
     .icon {
-      width: 25px;
-      height: 25px;
+      width: 24px;
+      height: 24px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      direction: ltr;
+
+      flex: 0 0 24px;
     }
+
+    .icon svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+      fill: currentColor;
+    }
+
+    /* =========================
+       OFFICIAL WEBSITE
+    ========================== */
 
     .website {
       background: #173d2a;
       color: #ffffff;
+
+      box-shadow:
+        0 7px 22px rgba(23, 61, 42, 0.18);
+
+      margin-bottom: 3px;
     }
+
+    .website:hover {
+      background: #214d37;
+    }
+
+    .website .icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    .footer {
+      margin-top: 31px;
+      color: #7b8173;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2px;
+    }
+
+    @media (max-width: 380px) {
+
+      body {
+        padding: 25px 14px 30px;
+      }
+
+      .logo {
+        width: 210px;
+      }
+
+      .link {
+        min-height: 57px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         KAZOZTA LOGO
+    ========================== -->
+
+    <section class="brand">
+
+      <img
+        class="logo"
+        src="assets/logo.png"
+        alt="KAZOZTA"
+      >
+
+      <p class="tagline">
+        الطبيعة على مائدتك
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         LINKS
+    ========================== -->
+
+    <section class="links">
+
+
+      <!-- WEBSITE -->
+
+      <a
+        class="link website"
+        href="https://kazozta.pages.dev/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="الموقع الرسمي لكازوزتا"
+      >
+
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            />
+            <path
+              d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg>
+        </span>
+
+        <span>الموقع الرسمي</span>
+
+      </a>
+
+
+      <!-- FACEBOOK -->
+
+      <a
+        class="link"
+        href="https://www.facebook.com/share/1LovqNEZ1m/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="KAZOZTA على فيسبوك"
+      >
+
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 8h3V4.5c-.5-.1-1.8-.2-3.2-.2-3.2 0-5.4 2-5.4 5.5V13H5v4h3.4v7h4.2v-7h3.5l.6-4h-4.1V10c0-1.2.3-2 1.4-2z"/>
+          </svg>
+        </span>
+
+        <span>Facebook</span>
+
+      </a>
+
+
+      <!-- INSTAGRAM -->
+
+      <a
+        class="link"
+        href="https://www.instagram.com/kazozta?stkn=Yng0cHE3aGF1dTE4"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="KAZOZTA على إنستجرام"
+      >
+
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect
+              x="3"
+              y="3"
+              width="18"
+              height="18"
+              rx="5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              r="4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+            <circle
+              cx="17.4"
+              cy="6.7"
+              r="1.2"
+            />
+          </svg>
+        </span>
+
+        <span>Instagram</span>
+
+      </a>
+
+
+      <!-- TIKTOK -->
+
+      <a
+        class="link"
+        href="https://www.tiktok.com/@kazozta?_r=1&_t=ZS-99jTFdvU14K"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="KAZOZTA على تيك توك"
+      >
+
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14.2 3h3.1c.3 1.7 1.3 3.1 2.7 4.1.7.5 1.4.8 2.2 1v3.2c-1.8-.1-3.5-.7-4.9-1.7v6.6c0 4-2.8 6.8-6.8 6.8-3.6 0-6.2-2.5-6.2-5.8 0-3.5 2.8-6.1 6.4-6.1.4 0 .8 0 1.2.1v3.3c-.4-.1-.8-.2-1.2-.2-1.5 0-2.7 1-2.7 2.5 0 1.4 1.1 2.4 2.5 2.4 1.7 0 2.7-1.1 2.7-3V3z"/>
+          </svg>
+        </span>
+
+        <span>TikTok</span>
+
+      </a>
+
+
+      <!-- YOUTUBE -->
+
+      <a
+        class="link"
+        href="https://youtube.com/@kazozta?si=d9HeThkAIO0BnZ-_"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="KAZOZTA على يوتيوب"
+      >
+
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/>
+          </svg>
+        </span>
+
+        <span>YouTube</span>
+
+      </a>
+
+
+      <!-- WHATSAPP -->
+
+      <a
+        class="link"
+        href="https://wa.me/201501546667"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="KAZOZTA على واتساب"
+      >
+
+        <span class="icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .4 5.2.4 11.7c0 2.1.6 4.1 1.6 5.9L.3 24l6.6-1.7a11.7 11.7 0 0 0 5.2 1.2h.1c6.5 0 11.7-5.2 11.7-11.7 0-3.1-1.2-6.1-3.4-8.3zM12.1 21.2c-1.6 0-3.2-.4-4.6-1.2l-.3-.2-3.9 1 1-3.8-.2-.4a9.5 9.5 0 0 1-1.4-4.9c0-5.2 4.2-9.4 9.4-9.4 2.5 0 4.9 1 6.7 2.8a9.4 9.4 0 0 1 2.8 6.7c0 5.2-4.2 9.4-9.5 9.4zm5.2-7.1c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.7.9-.8 1.1-.2.2-.3.2-.6.1-1.5-.7-2.5-1.3-3.5-2.9-.3-.5.3-.4.8-1.4.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.2 3.2c.2.2 2.1 3.2 5.1 4.5 1.9.8 2.7.9 3.7.8.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3-.1-.1-.3-.2-.6-.3z"/>
+          </svg>
+        </span>
+
+        <span>WhatsApp</span>
+
+      </a>
+
+    </section>
+
+
+    <footer class="footer">
+      KAZOZTA — PREMIUM QUALITY
+    </footer>
+
+  </main>
+
+</body>
+</html>
 
     .footer {
       margin-top: 28px;
