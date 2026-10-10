@@ -1,8 +1,8 @@
 # KAZOZTA Website
 
-Static, dependency-free product website for KAZOZTA. No backend, no
-database, no payment provider, no Shopify. Product ordering happens by
-generating a pre-filled WhatsApp message.
+Static, dependency-free product website for KAZOZTA. Product ordering happens
+by generating a pre-filled WhatsApp message; Cloudflare Pages Functions and D1
+record a minimal order attempt and anonymous visit session for the dashboard.
 
 This is the **technical foundation only**. The final visual design and UX
 copy will be provided separately and layered on top of this structure.
@@ -87,9 +87,12 @@ opening WhatsApp.
    details, each product with quantity and line price, and the total).
 3. The message is passed through `encodeURIComponent()` and appended to
    `https://wa.me/<WHATSAPP_NUMBER>?text=...`, which opens in a new tab.
-4. No order data is ever sent to any server — the link only opens the
-   customer's own WhatsApp app/web client with the message pre-filled. The
-   customer still has to press "Send" inside WhatsApp themselves.
+4. Before opening WhatsApp, the site records products, quantities, prices,
+   subtotal, and VAT in D1. It does not send customer name, phone, or address.
+   This is an attempt only; the customer still has to press "Send" inside
+   WhatsApp, and a staff member must confirm it in the dashboard. Prices from
+   the browser are for dashboard tracking and are not a trusted accounting
+   source.
 
 ## Known gap
 
@@ -100,14 +103,18 @@ back to showing the product name as plain text instead of a broken image.
 
 ## Deploying to Cloudflare Pages
 
-This is a static site, so no build step is required:
+This is a static site, so no build step is required. For a Cloudflare Pages project using Functions, use:
 
 1. Connect this GitHub repository in the Cloudflare Pages dashboard.
-2. Build command: leave empty (or `none`).
-3. Build output directory: `/` (repository root).
+2. Build command: `exit 0`.
+3. Build output directory: `.` (repository root).
 4. Production branch: `main`.
 
 Because `index.html` uses `fetch()` to load `data/products.json` and
 `<script type="module">`, the site must be served over `http(s)://`, not
 opened directly as a `file://` path — use a local static server (e.g.
 `npx serve` or `python3 -m http.server`) when testing locally.
+
+## لوحة التحكم (Cloudflare Pages)
+
+تمت إضافة واجهة إدارية عربية ومسارات Pages Functions لتسجيل زيارات الموقع ومحاولات الطلب قبل فتح واتساب، مع تأكيد الطلبات يدويًا وصلاحيات D1 وCloudflare Access. يلزم نشر الموقع عبر Cloudflare Pages لتشغيل الدوال؛ GitHub Pages يعرض الملفات الثابتة فقط. راجع [دليل الإعداد العربي](DASHBOARD_SETUP_AR.md). اترك الدومين الحالي دون تغيير حتى التحقق من رابط Pages التجريبي.

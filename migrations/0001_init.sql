@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS dashboard_users (email TEXT PRIMARY KEY, display_name TEXT, role TEXT NOT NULL CHECK(role IN ('owner','manager','employee')), active INTEGER NOT NULL DEFAULT 1 CHECK(active IN (0,1)), created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS order_attempts (id TEXT PRIMARY KEY, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, subtotal_piasters INTEGER NOT NULL, vat_piasters INTEGER NOT NULL, total_piasters INTEGER NOT NULL, items_json TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'whatsapp_open_attempt' CHECK(status IN ('whatsapp_open_attempt','contacted','confirmed','cancelled','completed')), status_updated_by TEXT);
+CREATE INDEX IF NOT EXISTS attempts_created ON order_attempts(created_at DESC);
+CREATE TABLE IF NOT EXISTS visitor_events (id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, session_id TEXT NOT NULL, path TEXT NOT NULL, referrer TEXT, event_type TEXT NOT NULL DEFAULT 'pageview');
+CREATE INDEX IF NOT EXISTS idx_events_created ON visitor_events(created_at DESC);

@@ -2,6 +2,7 @@
 import { loadProducts } from "./products.js";
 import * as cart from "./cart.js";
 import { buildOrderMessage, buildWhatsAppUrl } from "./order.js";
+import { recordOrderAttempt } from "./order-attempt-tracker.js";
 
 let products = [];
 const VAT_RATE = 0.14;
@@ -214,7 +215,7 @@ function setOrderStatus(message, isError) {
   );
 }
 
-function handleOrderSubmit(event) {
+async function handleOrderSubmit(event) {
   event.preventDefault();
 
   const form = event.target;
@@ -244,7 +245,23 @@ function handleOrderSubmit(event) {
 
   try {
     const url = buildWhatsAppUrl(message);
-    window.open(url, "_blank", "noopener");
+    // Open a user-initiated tab before awaiting the network request so browsers
+    // do not block the WhatsApp popup after the order attempt has been saved.
+    const whatsappWindow = window.open("about:blank", "_blank");
+    if (!whatsappWindow) {
+      setOrderStatus("اسمح بفتح نافذة واتساب ثم أعد المحاولة.", true);
+      return;
+    }
+    whatsappWindow.opener = null;
+
+    const attempt = await recordOrderAttempt(currentCart, products);
+    if (!attempt.ok) {
+      whatsappWindow.close();
+      setOrderStatus("تعذر تسجيل محاولة الطلب. حاول مرة أخرى.", true);
+      return;
+    }
+
+    whatsappWindow.location.replace(url);
     setOrderStatus(
       "يتم الآن فتح واتساب لإرسال تفاصيل طلبك.",
       false
@@ -307,7 +324,35 @@ function setupFooterYear() {
   }
 }
 
+function recordPageView() {
+  let sessionId = sessionStorage.getItem("kz-visitor-session");
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    sessionStorage.setItem("kz-visitor-session", sessionId);
+  }
+
+  let referrer = "";
+  try {
+    referrer = document.referrer ? new URL(document.referrer).origin : "";
+  } catch {
+    // Ignore an invalid referrer instead of blocking the storefront.
+  }
+
+  fetch("/api/events", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      session_id: sessionId,
+      path: window.location.pathname,
+      referrer,
+    }),
+    keepalive: true,
+  }).catch((err) => console.error("Could not record visit", err));
+}
+
 async function init() {
+  recordPageView();
+
   try {
     products = await loadProducts();
   } catch (err) {
