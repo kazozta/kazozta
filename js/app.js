@@ -1,12 +1,10 @@
-// App entry point: loads products, renders the catalog and cart, and wires
-// up navigation, scroll reveal, and the order form. Data lives in
-// data/products.json, cart logic lives in cart.js, message building in order.js.
 
 import { loadProducts } from "./products.js";
 import * as cart from "./cart.js";
 import { buildOrderMessage, buildWhatsAppUrl } from "./order.js";
 
 let products = [];
+const VAT_RATE = 0.14;
 
 function formatPrice(product) {
   return `${product.price} ${product.currency}`;
@@ -63,7 +61,9 @@ function renderProducts() {
     const addButton = document.createElement("button");
     addButton.type = "button";
     addButton.className = "product-card__add";
-    addButton.textContent = product.available ? "أضف إلى السلة" : "غير متوفر حاليًا";
+    addButton.textContent = product.available
+      ? "أضف إلى السلة"
+      : "غير متوفر حاليًا";
     addButton.disabled = !product.available;
     addButton.addEventListener("click", () => {
       cart.addItem(product.id, 1);
@@ -88,14 +88,21 @@ function renderProducts() {
 function renderCart() {
   const cartInner = document.querySelector(".cart-inner");
   const list = document.getElementById("cart-items");
+  const subtotalEl = document.getElementById("cart-subtotal");
+  const vatEl = document.getElementById("cart-vat");
   const totalEl = document.getElementById("cart-total");
   const countEl = document.getElementById("cart-count");
   const headerCountEl = document.getElementById("header-cart-count");
+
   if (!list || !totalEl || !countEl) return;
 
   const currentCart = cart.getCart();
   const isEmpty = Object.keys(currentCart).length === 0;
-  if (cartInner) cartInner.classList.toggle("is-empty", isEmpty);
+
+  if (cartInner) {
+    cartInner.classList.toggle("is-empty", isEmpty);
+  }
+
   list.innerHTML = "";
 
   Object.entries(currentCart).forEach(([productId, qty]) => {
@@ -114,7 +121,10 @@ function renderCart() {
     decreaseBtn.type = "button";
     decreaseBtn.className = "cart-item__step";
     decreaseBtn.textContent = "-";
-    decreaseBtn.setAttribute("aria-label", `تقليل كمية ${product.name}`);
+    decreaseBtn.setAttribute(
+      "aria-label",
+      `تقليل كمية ${product.name}`
+    );
     decreaseBtn.addEventListener("click", () => {
       cart.decrement(productId);
       renderCart();
@@ -129,7 +139,10 @@ function renderCart() {
     increaseBtn.type = "button";
     increaseBtn.className = "cart-item__step";
     increaseBtn.textContent = "+";
-    increaseBtn.setAttribute("aria-label", `زيادة كمية ${product.name}`);
+    increaseBtn.setAttribute(
+      "aria-label",
+      `زيادة كمية ${product.name}`
+    );
     increaseBtn.addEventListener("click", () => {
       cart.increment(productId);
       renderCart();
@@ -138,40 +151,74 @@ function renderCart() {
     const lineTotal = document.createElement("span");
     lineTotal.className = "cart-item__line-total";
     lineTotal.dir = "ltr";
-    lineTotal.textContent = `${product.price * qty} ${product.currency}`;
+    lineTotal.textContent = `${(
+      product.price * qty
+    ).toFixed(2)} ${product.currency}`;
 
     const removeBtn = document.createElement("button");
     removeBtn.type = "button";
     removeBtn.className = "cart-item__remove";
     removeBtn.textContent = "إزالة";
-    removeBtn.setAttribute("aria-label", `إزالة ${product.name} من السلة`);
+    removeBtn.setAttribute(
+      "aria-label",
+      `إزالة ${product.name} من السلة`
+    );
     removeBtn.addEventListener("click", () => {
       cart.removeItem(productId);
       renderCart();
     });
 
-    item.append(name, decreaseBtn, qtyEl, increaseBtn, lineTotal, removeBtn);
+    item.append(
+      name,
+      decreaseBtn,
+      qtyEl,
+      increaseBtn,
+      lineTotal,
+      removeBtn
+    );
     list.appendChild(item);
   });
 
-  const currency = products[0] ? products[0].currency : "EGP";
+  const currency = products[0]?.currency || "EGP";
   const totalQty = cart.getTotalQuantity();
-  totalEl.textContent = `${cart.getSubtotal(products)} ${currency}`;
+
+  // حساب المجموع والضريبة والإجمالي النهائي
+  const subtotal = cart.getSubtotal(products);
+  const vat = Math.round(subtotal * VAT_RATE * 100) / 100;
+  const total = subtotal + vat;
+
+  if (subtotalEl) {
+    subtotalEl.textContent = `${subtotal.toFixed(2)} ${currency}`;
+  }
+
+  if (vatEl) {
+    vatEl.textContent = `${vat.toFixed(2)} ${currency}`;
+  }
+
+  totalEl.textContent = `${total.toFixed(2)} ${currency}`;
   countEl.textContent = String(totalQty);
-  if (headerCountEl) headerCountEl.textContent = String(totalQty);
+
+  if (headerCountEl) {
+    headerCountEl.textContent = String(totalQty);
+  }
 }
 
 function setOrderStatus(message, isError) {
   const statusEl = document.getElementById("order-status");
   if (!statusEl) return;
+
   statusEl.textContent = message;
-  statusEl.classList.toggle("order-status--error", Boolean(isError));
+  statusEl.classList.toggle(
+    "order-status--error",
+    Boolean(isError)
+  );
 }
 
 function handleOrderSubmit(event) {
   event.preventDefault();
 
   const form = event.target;
+
   const customer = {
     country: form.elements["customer-country"].value,
     name: form.elements["customer-name"].value.trim(),
@@ -180,19 +227,33 @@ function handleOrderSubmit(event) {
   };
 
   const currentCart = cart.getCart();
+
   if (Object.keys(currentCart).length === 0) {
-    setOrderStatus("السلة فارغة. الرجاء إضافة منتج واحد على الأقل قبل إتمام الطلب.", true);
+    setOrderStatus(
+      "السلة فارغة. الرجاء إضافة منتج واحد على الأقل قبل إتمام الطلب.",
+      true
+    );
     return;
   }
 
-  const message = buildOrderMessage(customer, currentCart, products);
+  const message = buildOrderMessage(
+    customer,
+    currentCart,
+    products
+  );
 
   try {
     const url = buildWhatsAppUrl(message);
     window.open(url, "_blank", "noopener");
-    setOrderStatus("يتم الآن فتح واتساب لإرسال تفاصيل طلبك.", false);
+    setOrderStatus(
+      "يتم الآن فتح واتساب لإرسال تفاصيل طلبك.",
+      false
+    );
   } catch (err) {
-    setOrderStatus("تعذر إتمام الطلب حاليًا. لم يتم إعداد رقم واتساب الخاص بالشركة بعد.", true);
+    setOrderStatus(
+      "تعذر إتمام الطلب حاليًا. لم يتم إعداد رقم واتساب الخاص بالشركة بعد.",
+      true
+    );
     console.error(err);
   }
 }
@@ -241,7 +302,9 @@ function setupScrollReveal() {
 
 function setupFooterYear() {
   const yearEl = document.getElementById("footer-year");
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  if (yearEl) {
+    yearEl.textContent = String(new Date().getFullYear());
+  }
 }
 
 async function init() {
