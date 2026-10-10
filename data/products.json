@@ -1,3 +1,4 @@
+
 [
   {
     "id": "olive-oil-250ml",
@@ -27,15 +28,6 @@
     "image": "assets/basmati-rice.webp",
     "description": "عبوة 1 كيلو",
     "category": "أرز بسمتي",
-    "available": true
-  },
-    "id": "coming-soon",
-    "name": "قريبًا",
-    "price": 0,
-    "currency": "EGP",
-    "image": "assets/coming-soon.png",
-    "description": "",
-    "category": "coming-soon",
     "available": true
   }
 ]
