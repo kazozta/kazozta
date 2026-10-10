@@ -1,22 +1,35 @@
-// Loads product data from data/products.json.
-// This is the only place product data is fetched — the UI never hard-codes products.
-
-const PRODUCTS_URL = "data/products.json";
-
-let cachedProducts = null;
-
-export async function loadProducts() {
-  if (cachedProducts) return cachedProducts;
-
-  const response = await fetch(PRODUCTS_URL);
-  if (!response.ok) {
-    throw new Error(`Failed to load ${PRODUCTS_URL}: HTTP ${response.status}`);
+[
+  {
+    "id": "olive-oil-250ml",
+    "name": "زيت زيتون كازوزتا",
+    "price": 140,
+    "currency": "EGP",
+    "image": "assets/olive-oil.webp",
+    "description": "عبوة 250 مل",
+    "category": "زيت زيتون",
+    "available": true,
+    "size": "250 مل"
+  },
+  {
+    "id": "olive-oil-500ml",
+    "name": "زيت زيتون كازوزتا",
+    "price": 280,
+    "currency": "EGP",
+    "image": "assets/olive-oil.webp",
+    "description": "عبوة 500 مل",
+    "category": "زيت زيتون",
+    "available": true,
+    "size": "500 مل"
+  },
+  {
+    "id": "basmati-rice-1kg",
+    "name": "أرز بسمتي ذهبي فاخر",
+    "price": 95,
+    "currency": "EGP",
+    "image": "assets/basmati-rice.webp",
+    "description": "عبوة 1 كيلو",
+    "category": "أرز بسمتي",
+    "available": true,
+    "size": "1 كيلو"
   }
-
-  cachedProducts = await response.json();
-  return cachedProducts;
-}
-
-export function findProduct(products, productId) {
-  return products.find((product) => product.id === productId) || null;
-}
+]
