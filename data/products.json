@@ -29,5 +29,15 @@
     "description": "عبوة 1 كيلو",
     "category": "أرز بسمتي",
     "available": true
+  },
+  {
+    "id": "barista-tea-500g",
+    "name": "شاي Barista بريميوم",
+    "price": 80,
+    "currency": "EGP",
+    "image": "assets/coming-soon.png",
+    "description": "عبوة 500 جرام – معها كوباية Barista زجاج هدية",
+    "category": "شاي",
+    "available": true
   }
 ]
