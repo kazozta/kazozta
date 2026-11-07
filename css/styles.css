@@ -555,6 +555,8 @@ a {
 
 .product-card {
   width: 100%;
+  height: 100%;
+  box-sizing: border-box;
   max-width: 220px;
   background: var(--white);
   border: 1px solid var(--line);
@@ -681,6 +683,8 @@ a {
 }
 
 .product-card__add {
+  margin-top: auto;
+  width: 100%;
   background: var(--green);
   color: var(--white);
   border: none;
