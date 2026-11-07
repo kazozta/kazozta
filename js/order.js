@@ -37,8 +37,13 @@ export function buildOrderMessage(customer, cartItems, products) {
     lines.push(`- ${product.name} x ${qty} = ${lineTotal} ${product.currency}`);
   });
 
+  const vat = Math.round(total * 0.14 * 100) / 100;
+  const grandTotal = total + vat;
+
   lines.push("");
-  lines.push(`الإجمالي: ${total} ${currency}`);
+  lines.push(`المجموع قبل الضريبة: ${total.toFixed(2)} ${currency}`);
+  lines.push(`ضريبة القيمة المضافة (14%): ${vat.toFixed(2)} ${currency}`);
+  lines.push(`الإجمالي شامل الضريبة: ${grandTotal.toFixed(2)} ${currency}`);
 
   return lines.join("\n");
 }
